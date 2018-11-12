@@ -4,7 +4,7 @@
 #include <string>
 
 
-int copy(const std::string &fileI, const std::string &fileO);
+void copy(const std::string &fileI, const std::string &fileO);
 
 int main() {
 
@@ -15,18 +15,14 @@ int main() {
     return 0;
 }
 
-int copy(const std::string &fileI, const std::string &fileO) {
+void copy(const std::string &fileI, const std::string &fileO) {
     std::ifstream filesI(fileI);
     std::ofstream filesO(fileO);
     std::string lines;
-    if (filesI.is_open()) {
-        while (getline(filesI, lines)) {
-            if (filesO.is_open()) {
-                filesO << lines << "\n";
-            } else { std::cout << "Can't copy the file."; }
-        }
-    } else { std::cout << "Can't find the file."; }
     if (filesI.is_open() && filesO.is_open()) {
-        std::cout << "Well done. Everything is fine.";
-    } else { "Copy failed."; }
+        while (getline(filesI, lines)) {
+            filesO << lines << "\n";
+        }
+        std::cout << "Well done. You copied the file.";
+    } else { std::cout << "Can't copy the file."; }
 }
