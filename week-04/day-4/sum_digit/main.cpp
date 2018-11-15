@@ -1,22 +1,21 @@
 #include <iostream>
 
-int sumDigit(int n);
-// Given a non-negative int n, return the sum of its digits recursively (no loops).
-// Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while
-// divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
+int sumDigit(int n, int sum);
 
 int main() {
 
-    int num;
+    int num = 0, sum = 0;
     std::cout << "give me a positive number, please " << std::endl;
     std::cin >> num;
-    sumDigit(num);
+    sum = sumDigit(num, sum);
+    std::cout << sum;
     return 0;
 }
-int sumDigit(int n,int sum){
-    if(n>0){
-    sum=sum+n%10;
-    n=n/10;
-    return sum;}
-    else {std::cout << "Wrong. A positive number, please.";}
+
+int sumDigit(int n, int sum) {
+    if (n != 0) {
+        sum = sum + n % 10;
+        n = n / 10;
+        return sumDigit(n, sum);
+    } else { return sum; }
 }
