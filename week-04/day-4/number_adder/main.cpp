@@ -11,7 +11,5 @@ int main() {
     return 0;
 }
 int adder(int x){
-    if (x>=1){
-        return (x+adder(x-1));
-    } else {return -1;}
+    return x >= 1 ? x + adder(x - 1) : 0;
 }
