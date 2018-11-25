@@ -8,6 +8,6 @@ int main(int argc, char *args[]) {
     for (int i = 0; i < sizeof(ai) / sizeof(ai[0]); i++) {
         sum += ai[i];
     }
-    std::cout << sum;
+    std::cout << "The sum of the elements is" << sum << ".";
     return 0;
 }
