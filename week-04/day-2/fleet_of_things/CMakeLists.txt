@@ -3,4 +3,4 @@ project(fleet_of_things)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(fleet_of_things main.cpp fleet.cpp fleet.h thing.c thing.h)
+add_executable(fleet_of_things main.cpp fleet.cpp fleet.h thing.c thing.h things.cpp things.h)

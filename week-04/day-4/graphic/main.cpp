@@ -1,10 +1,9 @@
 #include <iostream>
 #include <SDL.h>
-#include <SDL2_gfxPrimitives.h>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 600;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 480;
+const int SCREEN_HEIGHT = 480;
 
 //Draws geometry on the canvas
 void draw();
@@ -21,23 +20,17 @@ SDL_Window* gWindow = nullptr;
 //The window renderer
 SDL_Renderer* gRenderer = nullptr;
 
-void draw(int x, int y, int size, int d)
+void draw()
 {
-    if(d==3){
-        return;
-    }
     SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
-    SDL_Rect fillRect = { x-size/2, y-size/2, size, size};
-    SDL_RenderFillRect( gRenderer, &fillRect );
-    draw(x+size,y+size,size/3,d+1);
-    draw(x+size,y-size,size/3,d+1);
-    draw(x-size,y-size,size/3,d+1);
-    draw(x-size,y+size,size/3,d+1);
-    draw(x,y+size/3,size/3,d+1);
-    draw(x,y-size/3,size/3,d+1);
-    draw(x+size,y,size/3,d+1);
-    draw(x-size,y,size/3,d+1);
-
+    SDL_Rect fillRect1 = { SCREEN_WIDTH/3,0,SCREEN_WIDTH/3,SCREEN_HEIGHT/3};
+    SDL_RenderDrawRect( gRenderer, &fillRect1 );
+    SDL_Rect fillRect2 = { 0,SCREEN_HEIGHT/3,SCREEN_WIDTH/3,SCREEN_HEIGHT/3};
+    SDL_RenderDrawRect( gRenderer, &fillRect2 );
+    SDL_Rect fillRect3 = { SCREEN_WIDTH*2/3,SCREEN_HEIGHT/3,SCREEN_WIDTH/3,SCREEN_HEIGHT/3};
+    SDL_RenderDrawRect( gRenderer, &fillRect3 );
+    SDL_Rect fillRect4 = { SCREEN_WIDTH/3,SCREEN_WIDTH*2/3,SCREEN_WIDTH/3,SCREEN_HEIGHT/3};
+    SDL_RenderDrawRect( gRenderer, &fillRect4 );
 }
 
 bool init()
@@ -112,7 +105,7 @@ int main( int argc, char* args[] )
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
-        draw(SCREEN_WIDTH/2,SCREEN_HEIGHT/2,SCREEN_WIDTH/3,0);
+        draw();
 
         //Update screen
         SDL_RenderPresent(gRenderer);

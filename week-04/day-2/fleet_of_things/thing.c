@@ -1,5 +1,5 @@
 #include "thing.h"
-
+#include <string>
 Thing::Thing(const std::string& name)
 {
     _name = name;
