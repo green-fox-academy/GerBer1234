@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+std::vector<std::string> appendA(const std::vector<std::string> &temp);
+
+int main(int argc, char* args[])
+{
+    std::vector<std::string> animals = {"bo", "anacond", "koal", "pand", "zebr"};
+
+    // Create a function called "appendA()" that adds "a" to every string in the "animals" list.
+    // The parameter should be a vector.
+
+    for(const auto& animal : appendA(animals))
+    {
+        std::cout << animal << " ";
+    }
+
+    return 0;
+}
+
+std::vector<std::string> appendA(const std::vector<std::string> &temp){
+    std::vector<std::string> list = temp;
+    int size = list.size();
+    char letter = 'a';
+    for(int i=0;i<size;i++){
+        list[i].push_back(letter);
+    }
+    return list;
+}
