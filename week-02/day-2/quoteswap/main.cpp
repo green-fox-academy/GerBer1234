@@ -2,28 +2,38 @@
 #include <string>
 #include <algorithm>
 #include <vector>
-
-std::vector<std::string> quoteSwap(std::vector<std::string> quote);
+//Version 1
+/*std::vector<std::string> quoteSwap(std::vector<std::string> quote);
 
 int main(int argc, char* args[])
 {
     std::vector<std::string> quote = {"What", "I", "do", "create,", "I", "cannot", "not", "understand."};
-
-    // Accidentally I messed up this quote from Richard Feynman.
-    // I do not understand things which I cannot create.
-    // Two words are out of place
-    // Your task is to fix it by swapping the right words with code
-    // Create a method called quoteSwap().
-
-    // Also, print the sentence to the output with spaces in between.
-    for(const auto& great : swap(quote))
+    for(const auto& great : quoteSwap(quote))
     {
         std::cout << great << " ";
     }
     return 0;
 }
 std::vector<std::string> quoteSwap(std::vector<std::string> quote){
-    std::vector<std::string> original = {"I","do","not","understand","things","which","I","cannot","create."};
-    
+    std::string temp;
+    temp = quote[2];
+    quote[2]=quote[5];
+    quote[5]=temp;
     return quote;
+}*/
+//Version 2
+std::vector<std::string> quoteSwap(std::vector<std::string> &quote, const std::string &first, const std::string &second){
+    auto itFirst = std::find(quote.begin(), quote.end(), first);
+    auto itSecond = std::find(quote.begin(), quote.end(), second);
+    *itFirst = second;
+    *itSecond = first;
+    return quote;
+}
+
+int main() {
+    std::vector<std::string> quote = {"What", "I", "do", "create,", "I", "cannot", "not", "understand."};
+    for (const auto &sweet : quoteSwap(quote, "cannot", "do")){
+        std::cout << sweet << " ";
+    }
+    return 0;
 }
