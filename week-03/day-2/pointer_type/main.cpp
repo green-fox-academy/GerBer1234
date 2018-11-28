@@ -1,25 +1,18 @@
 #include <iostream>
 
-int main ()
-{
+int main() {
     int a = 31;
     double b = 432.2;
     std::string name = "Bob";
 
-    int *aPointer;
-    aPointer=&a;
-    double *bPointer;
-    bPointer=&b;
-    std::string *namePointer;
-    namePointer = &name;
-
-    std::cout << aPointer << std::endl;
-    std::cout << bPointer << std::endl;
-    std::cout << namePointer << std::endl;
-
-    std::cout << *aPointer << std::endl;
-    std::cout << *bPointer << std::endl;
-    std::cout << *namePointer << std::endl;
-
+    int *aPtr = nullptr;
+    aPtr = &a;
+    double *bPtr = nullptr;
+    bPtr = &b;
+    std::string *namePtr = nullptr;
+    namePtr = &name;
+    std::cout << &aPtr << " " << *aPtr << std::endl;
+    std::cout << &bPtr << " " << *bPtr << std::endl;
+    std::cout << &namePtr << " " << *namePtr << std::endl;
     return 0;
 }

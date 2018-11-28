@@ -1,12 +1,10 @@
 #include <iostream>
 
-int main ()
-{
-    float *tempPointer;
+int main() {
     float temperature = 21.3;
-    tempPointer = &temperature;
-    *tempPointer = 17.3;
-    std::cout << temperature << std::endl;
-
+    float *tempPtr;
+    tempPtr = &temperature;
+    *tempPtr = 22;
+    std::cout << temperature;
     return 0;
 }

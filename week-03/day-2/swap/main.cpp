@@ -1,24 +1,18 @@
 #include <iostream>
 
-void swap(int *x, int *y);
+void swap(int *a, int *b);
 
-int main ()
-{
-    // Create a function which swaps the values of 'a' and 'b'
-    // This time use a void funtion and pointers
-
+int main() {
     int a = 10;
     int b = 316;
-
-    swap(&a,&b);
-    std::cout << "a=" << a << std::endl;
-    std::cout << "b=" << b << std::endl;
+    swap(&a, &b);
     return 0;
 }
 
-void swap (int *x, int *y)
-{int z;
-z=*x;
-*x=*y;
-*y=z;
+void swap(int *a, int *b) {
+    int c = 0;
+    c = *a;
+    *a = *b;
+    *b = c;
+    std::cout << *a << " " << *b;
 }

@@ -1,11 +1,9 @@
 #include <iostream>
 
-int main ()
-{
-    int *agePointer;
+int main() {
     int age = 31;
-    agePointer=&age;
-    std::cout << *agePointer << std::endl;
-
+    int *agePtr;
+    agePtr = &age;
+    std::cout << *agePtr;
     return 0;
 }
