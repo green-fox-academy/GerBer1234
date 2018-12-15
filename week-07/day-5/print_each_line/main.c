@@ -14,5 +14,6 @@ int main() {
             puts(line);
         }
     }
+    fclose(fp);
     return 0;
 }
