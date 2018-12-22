@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef enum type {
     BIG = 15,
@@ -22,31 +23,16 @@ char *get_type(type_t type);
 
 int get_screen_size_count(smartphone_t arr[], int length, const char *tp);
 
-int prices(smartphone_t arr[], char *filename,int length);
-
-/* Create a smartphone register application
- * Additionally, you need to create a new file(prices.txt) that looks like this:
- * <NAME> <PRICE>
- * <NAME> <PRICE>
- * .
- * .
- * .
- *
- * To calculate the price use the following method. The base price of every phone is 300$.
- * If the size is SMALL, that adds 0$ to the value
- * If the size is MEDIUM, that adds 100$ to the value
- * If the size is BIG, that doubles the base price.
- *
- * The price also depends on the age. For every year that passed since its release,
- * the phone loses 50$ but the maximum value that it can lose because of the age is 250$
- */
+int prices(smartphone_t arr[], char *filename, int length);
 
 int main() {
     smartphone_t arr[100];
-    char *type="BIG";
+    char *type = "BIG";
     int size = read_from_file(arr, "phones.txt");
     get_oldest(arr, size);
-    printf("There are %d phones with %s (>= 15 cm) screen size\n", get_screen_size_count(arr, size, type), get_type((type_t) type));
+    printf("There are %d phones with %s (>= 15 cm) screen size\n", get_screen_size_count(arr, size, type),
+           get_type((type_t) type));
+    prices(arr, "prices.txt", size);
     return 0;
 }
 
@@ -89,13 +75,18 @@ int read_from_file(smartphone_t arr[], char *filename) {
     fclose(fp);
     return i;
 }
-char *get_type(type_t type){
-    switch(type){
-        case BIG : return "BIG";
-        case MEDIUM : return "MEDIUM";
-        case SMALL : return "SMALL";
+
+char *get_type(type_t type) {
+    switch (type) {
+        case BIG :
+            return "BIG";
+        case MEDIUM :
+            return "MEDIUM";
+        case SMALL :
+            return "SMALL";
     }
 }
+
 void get_oldest(smartphone_t arr[], int length) {
     int min = arr[0].year;
     int index = 0;
@@ -108,25 +99,62 @@ void get_oldest(smartphone_t arr[], int length) {
     printf("The %s is the oldest device in the database\n", arr[index].name);
 }
 
-int get_screen_size_count(smartphone_t arr[], int length, const char *tp){
+int get_screen_size_count(smartphone_t arr[], int length, const char *tp) {
     int counter = 0;
     for (int i = 0; i < length; ++i) {
-        if(get_type(arr[i].type)==tp){
+        if (get_type(arr[i].type) == tp) {
             counter++;
         }
     }
     return counter;
 }
 
-int prices(smartphone_t arr[],char *filename, int length){
+int year() {
+    time_t s;
+    struct tm *current_time;
+    s = time(NULL);
+    current_time = localtime(&s);
+    int now = current_time->tm_year + 1900;
+    return now;
+}
+
+int prices(smartphone_t arr[], char *filename, int length) {
     FILE *fp;
-    fp = fopen(filename,"w");
+    fp = fopen(filename, "w");
     if (fp == NULL) {
         printf("Can't open the file!\n");
         return -1;
     } else {
+        int lose = 50;
+        int age = 0;
         for (int i = 0; i < length; ++i) {
-            fputs(arr[i].name);
+            int price = 300;
+            age = year() - arr[i].year;
+            if (age > 5) {
+                age = 5;
+            }
+            if (arr[i].type < 12) {
+                if (arr[i].year == year()) {
+                    fprintf(fp, "%s %d\n", arr[i].name, price);
+                } else {
+                    fprintf(fp, "%s %d\n", arr[i].name, (price - (age * lose)));
+                }
+            } else if (arr[i].type >= 12 && arr[i].type <= 14) {
+                price += 100;
+                if (arr[i].year == year()) {
+                    fprintf(fp, "%s %d\n", arr[i].name, price);
+                } else {
+                    fprintf(fp, "%s %d\n", arr[i].name, (price - (age * lose)));
+                }
+            } else if (arr[i].type >= 15) {
+                price *= 2;
+                if (arr[i].year == year()) {
+                    fprintf(fp, "%s %d\n", arr[i].name, price);
+                } else {
+                    fprintf(fp, "%s %d\n", arr[i].name, (price - (age * lose)));
+                }
+            }
         }
     }
+    fclose(fp);
 }
