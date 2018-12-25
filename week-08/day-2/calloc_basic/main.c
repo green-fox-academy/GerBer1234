@@ -4,6 +4,10 @@
 int main() {
     int *pointer = NULL;
     pointer = calloc(10, sizeof(int));
+    if (pointer == NULL) {
+        printf("Error! memory not allocated.");
+        return -1;
+    }
     for (int i = 0; i < 5; ++i) {
         pointer[i] = i;
     }
