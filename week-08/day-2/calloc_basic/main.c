@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *pointer = NULL;
+    pointer = calloc(10, sizeof(int));
+    for (int i = 0; i < 5; ++i) {
+        pointer[i] = i;
+    }
+    for (int j = 0; j < 10; ++j) {
+        printf("%d ", pointer[j]);
+    }
+    free(pointer);
+    return 0;
+}
