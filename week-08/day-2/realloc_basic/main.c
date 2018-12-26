@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Allocate memory for the sum of the X numbers(Y) in the same array
-// Fill the array with numbers from 1 to Y, then print them
-
 int main() {
     int X, Y = 0;
     printf("Your number is: ");
@@ -21,8 +18,9 @@ int main() {
     }
     realloc(pointer, Y * sizeof(int));
     for (int k = 0; k < Y; ++k) {
-        pointer[k] = k + 1;
-        printf("%d ", pointer[k]);
+        pointer[k] = (k + 1) * 2;
+        printf("Number %d: %d\n", k + 1, pointer[k]);
     }
+    free(pointer);
     return 0;
 }
