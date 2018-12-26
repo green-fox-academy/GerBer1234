@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int cat(char *string1, char *string2);
+char *cat(char *string1, char *string2);
 
 int main() {
     char *string1 = {"First part "};
@@ -16,26 +16,31 @@ int main() {
             "Second: Write a function which takes 2 strings as parameter, concatenates them together and returns it back. "
             "Test it for long and empty strings as well. Try to use the least amount of memory that's possible. "};
     printf("Case 1:\n");
-    cat(string1, string2);
+    char *c1 = cat(string1, string2);
+    printf("%s\n", c1);
     printf("Case 2:\n");
-    cat(string3, string4);
+    char *c2 = cat(string3, string4);
+    printf("%s\n", c2);
     printf("Case 3:\n");
-    cat(string5, string6);
+    char *c3 = cat(string5, string6);
+    printf("%s\n", c3);
+    free(c1);
+    free(c2);
+    free(c3);
     return 0;
 }
 
-int cat(char *string1, char *string2) {
+char *cat(char *string1, char *string2) {
     char *result = malloc(strlen(string1) + strlen(string2) + 1);
     if (result == NULL) {
-        printf("Error! memory not allocated.");
-        return -1;
-    }
-    strcpy(result, string1);
-    strcat(result, string2);
-    if (strlen(result) == 0) {
-        printf("Empty string.\n");
+        return "Error! memory not allocated.";
     } else {
-        printf("%s\n", result);
+        strcpy(result, string1);
+        strcat(result, string2);
+        if (strlen(result) == 0) {
+            printf("Empty string.\n");
+        } else {
+            return result;
+        }
     }
-    free(result);
 }
