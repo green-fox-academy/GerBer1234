@@ -7,6 +7,10 @@ int main() {
     srand((unsigned int) time(NULL));
     int r = rand() % (50 - 20 + 1) + 20;
     int *relatives = calloc(r, sizeof(int));
+    if (relatives == NULL) {
+        printf("Error! memory not allocated.");
+        exit(-1);
+    }
     int i = 0;
     do {
         int w = rand() % r + 0;
