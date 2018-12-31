@@ -23,6 +23,10 @@ int worth(log_t arr[], int length);
 int main() {
     int N = num_of_lines("file.txt");
     log_t *arr = calloc((size_t) N, sizeof(log_t));
+    if (arr == NULL) {
+        printf("Error! memory not allocated.");
+        return -2;
+    }
     read_file(arr, "file.txt");
     printf("The shop had %d customers that day.\n", sum(arr, N));
     printf("The time of the most traffic was %s.\n", traffic(arr, N));
