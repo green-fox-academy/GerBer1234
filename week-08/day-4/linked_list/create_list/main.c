@@ -17,6 +17,7 @@ int main() {
     scanf("%d", &num);
     head = create_list(num);
     print_list(head);
+    free(head);
     return 0;
 }
 
