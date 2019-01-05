@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "vector.h"
 
@@ -10,5 +11,6 @@ int main() {
     scanf("%d",&value);
     push_back(v,value);
     print_vector(v);
+    free(v);
     return 0;
 }
