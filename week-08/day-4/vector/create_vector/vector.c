@@ -22,7 +22,7 @@ void add(vector_t *v) {
     do {
         printf("How many elements do you want to store? Maximum number of the elements is %d.",v->capacity);
         scanf("%d", &e);
-    } while (e >= v->capacity);
+    } while (e > v->capacity);
     for (int i = 0; i < e; i++) {
         printf("Enter %d. element of the vector:\n",i+1);
         scanf("%d", &v->elements[i]);
