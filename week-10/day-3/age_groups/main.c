@@ -111,19 +111,19 @@ void ages(persons_t *p, int num) {
 
 void get_person(age_groups age, persons_t *p, int num) {
     for (int i = 0; i < num; ++i) {
-        if (age == 0) {
+        if (age == BETWEEN_15_AND_20) {
             if (p[i].age > 14 && p[i].age < 20) {
                 printf("%s %d\n", p[i].name, p[i].age);
             }
-        } else if (age == 1) {
+        } else if (age == BETWEEN_20_AND_25) {
             if (p[i].age > 19 && p[i].age < 26) {
                 printf("%s %d\n", p[i].name, p[i].age);
             }
-        } else if (age == 2) {
+        } else if (age == BETWEEN_25_AND_30) {
             if (p[i].age > 25 && p[i].age < 30) {
                 printf("%s %d\n", p[i].name, p[i].age);
             }
-        } else if (age == 3) {
+        } else if (age == BETWEEN_30_AND_35) {
             if (p[i].age > 29 && p[i].age < 36) {
                 printf("%s %d\n", p[i].name, p[i].age);
             }
