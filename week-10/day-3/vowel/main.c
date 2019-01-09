@@ -14,14 +14,12 @@ int read_file(char *filename) {
     FILE *fp;
     fp = fopen(filename, "r");
     char line[200];
-    int i = 0;
     if (fp == NULL) {
         printf("Can't open the file");
         return -1;
     } else {
         while (fgets((char *) line, sizeof(line), fp) != NULL) {
-            counter += count_vowels(&line[i]);
-            i++;
+            counter += count_vowels(line);
         }
     }
     fclose(fp);
@@ -31,18 +29,14 @@ int read_file(char *filename) {
 int count_vowels(const char a[]) {
     int count = 0, c = 0, flag;
     char d;
-
     do {
         d = a[c];
-
         flag = check_vowel(d);
-
-        if (flag == 1)
+        if (flag == 1) {
             count++;
-
+        }
         c++;
     } while (d != '\0');
-
     return count;
 }
 
